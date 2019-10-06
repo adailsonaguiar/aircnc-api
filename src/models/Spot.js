@@ -5,8 +5,10 @@ const SpotSchema = new mongoose.Schema({
   company: String,
   price: Number,
   techs: [String],
-  user: mongoose.Schema.Types.ObjectId,
-  ref: 'User'
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
 
 module.exports = mongoose.model('Spot', SpotSchema);
