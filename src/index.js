@@ -1,7 +1,8 @@
 const express = require('express');
 const routes = require('./routes');
 const mongoose = require('mongoose');
-const cors = require('cors')
+const cors = require('cors');
+const path = require('path');
 
 const server = express();
 
@@ -12,10 +13,11 @@ mongoose.connect(
     useUnifiedTopology: true
   }
 );
+server.use(cors());
+server.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')));
 
 server.use(express.json());
 
 server.use(routes);
-server.use(cors())
 
 server.listen(3333);
